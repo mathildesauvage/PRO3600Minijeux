@@ -45,25 +45,26 @@ private String name;
   
 //Action du bouton  
 
-  //M�thode appel�e lors du clic de souris
+  //Méthode appelée lors du clic de souris
   public void mouseClicked(MouseEvent event) { 
   }
 
-  //M�thode appel�e lors du survol de la souris
+  //Méthode appelée lors du survol de la souris
   public void mouseEntered(MouseEvent event) { 
      }
 
-  //M�thode appel�e lorsque la souris sort de la zone du bouton
+  //Méthode appelée lorsque la souris sort de la zone du bouton
   public void mouseExited(MouseEvent event) { }
 
-  //M�thode appel�e lorsque l'on presse le bouton gauche de la souris
+  //Méthode appelée lorsque l'on presse le bouton gauche de la souris
   public void mousePressed(MouseEvent event) {try {
       img = ImageIO.read(new File("resources/ascore.png"));
+      resultat.Main.main(null);
     } catch (IOException e) {
       e.printStackTrace();
     }  
 	}
 
-  //M�thode appel�e lorsque l'on rel�che le clic de souris
+  //Méthode appelée lorsque l'on relâche le clic de souris
   public void mouseReleased(MouseEvent event) {  }       
 }

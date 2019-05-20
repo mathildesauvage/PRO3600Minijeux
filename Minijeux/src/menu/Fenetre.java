@@ -36,7 +36,6 @@ public Fenetre(){
 
 @Override
 public void actionPerformed(ActionEvent arg0) {
-	System.exit(0);
-	
+	System.out.print("ta mere");
 }       
 }

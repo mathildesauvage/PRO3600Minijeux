@@ -43,7 +43,7 @@ public class Main extends Application {
 	    AnimationTimer animation = new AnimationTimer() {
 	    	public void handle (long now){
 	    		Fenetre fenetre = null;
-	    		fenetre = new Fenetre(640,540, score, level, group, scene, "prairie.jpg");
+	    		fenetre = new Fenetre(640,540, score, level, group, scene, stage, "prairie.jpg");
 	    		fenetre.setInterface(gc);
 	    		fenetre.setBouton();
 	    		

@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Bouton {
 	String text;
@@ -44,17 +45,14 @@ public class Bouton {
 	    g.getChildren().add(txt);
 	}
 	
-	public void setInteractionSouris(Scene scene,  Fenetre fenetre, String type) {
+	public void setInteractionSouris(Scene scene, Stage stage,  Fenetre fenetre, String type) {
 		fond.setOnMousePressed(new EventHandler<MouseEvent>(){
 			public void handle (MouseEvent me) {
 				if (type=="quit") {
-					fond.setFill(Color.DARKGREY);
-					System.out.println("boite de dialogue");
-					//fenetre.resetAll();
+					stage.close();
 				} else if (type=="scores") {
-					fond.setFill(Color.DARKGREY);
-					System.out.println("redirection page scores");
-					System.exit(0);
+					resultat.Main.main(null);
+					stage.close();
 				}
 			};//fin du handle
 		});//fin du event

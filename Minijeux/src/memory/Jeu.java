@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
 
+
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -13,13 +14,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import menu.Menu;
@@ -29,37 +36,111 @@ import menu.Menu;
 
 public class Jeu extends Application {
 
-	private static final int NbreTotal = 8;
-	private static final int NbreParLigne = NbreTotal / 2;
+	private int NbreParLigne;
 	private Carte CarteSelectionnee = null;
 	private int NbreClicks = 2;
-	private Pane root;
-	private Parent createContent() {
-		root = new Pane();
+	ToggleGroup group = new ToggleGroup();
+
+	private Parent createContent1() {
+		Pane root = new Pane();
+		root.setPrefSize(800, 600);	
+		
+		Text text = new Text(250,200,"Jeu Memory");
+		text.setFont(Font.font("Helvetica", FontWeight.BOLD, 50));
+		text.setStroke(Color.TURQUOISE);
+		text.setFill(Color.BLACK);
+
+		Text text2 = new Text(250,240,"Choisissez le nombre de cartes : ");
+		text2.setFont(Font.font("Helvetica", FontWeight.NORMAL, 20));
+
+		Button start = new Button("Commencer");
+		Button retour = new Button("Retour");
+
+		retour.setLayoutX(250);
+		retour.setLayoutY(370);
+		start.setLayoutX(400);
+		start.setLayoutY(370);
+
+		start.setPrefSize(100, 50);
+		retour.setPrefSize(100, 50);
+
+		start.setOnAction(e -> { 
+			Node source = (Node) e.getSource();
+			Stage window = (Stage) source.getScene().getWindow();
+			window.setScene(new Scene(createContent2()));
+		});
+
+		retour.setOnAction(e -> {
+			menu.Menu.main(null);
+		});
+
+		ToggleGroup group = new ToggleGroup();
+
+		RadioButton button1 = new RadioButton("4");
+		button1.setToggleGroup(group);
+		button1.setOnAction( e -> {
+			NbreParLigne = 4;
+		});
+		
+		RadioButton button2 = new RadioButton("12");
+		button2.setToggleGroup(group);
+		button2.setOnAction( e -> {
+			NbreParLigne = 12;
+		});
+		
+		RadioButton button3 = new RadioButton("24");
+		button3.setToggleGroup(group);
+		button3.setOnAction( e -> {
+			NbreParLigne = 24;
+		});
+
+		RadioButton button4 = new RadioButton("30");
+		button4.setToggleGroup(group);
+		button4.setOnAction( e -> {
+			NbreParLigne = 30;
+		});
+
+		VBox menuButtons = new VBox(5);
+		menuButtons.getChildren().addAll(button1,button2,button3,button4);
+
+		root.getChildren().addAll(text,menuButtons,text2,start,retour);
+
+		menuButtons.setLayoutX(350);
+		menuButtons.setLayoutY(260);
+
+		return root;
+	}
+
+	private Parent createContent2() {
+		Pane root = new Pane();
 		root.setPrefSize(800, 600);	
 
 		Button menuu = new Button("Menu");
 		Button quit = new Button("Quitter");
 		Button score = new Button("Score");
+		Button retour = new Button("Retour");
 
-		menuu.setLayoutX(200);
+		retour.setLayoutX(150);
+		retour.setLayoutY(500);
+		menuu.setLayoutX(300);
 		menuu.setLayoutY(500);
-		quit.setLayoutX(350);
+		quit.setLayoutX(450);
 		quit.setLayoutY(500);
-		score.setLayoutX(500);
+		score.setLayoutX(600);
 		score.setLayoutY(500);
 
 		menuu.setPrefSize(100, 50);
 		quit.setPrefSize(100, 50);
 		score.setPrefSize(100, 50);
-
-
-		menuu.setOnAction(e -> {
+		retour.setPrefSize(100, 50);
+		
+		retour.setOnAction(e -> {
 			Node source = (Node) e.getSource();
 			Stage window = (Stage) source.getScene().getWindow();
-			window.close(); //quitter le jeu
+			window.setScene(new Scene(createContent1()));
+		});
+		menuu.setOnAction(e -> {
 			menu.Menu.main(null);
-			
 		});
 
 		quit.setOnAction(e -> {
@@ -79,6 +160,7 @@ public class Jeu extends Application {
 			dialog.setTitle("Jeu Memory");
 			dialog.setContentText("Vous allez etre redirigé vers les scores");
 			dialog.showAndWait();
+			resultat.Main.main(null); //afficher la page de scores
 		});
 
 		Image im1 = new Image("chaton.jpg",200,200,false,false);
@@ -111,20 +193,21 @@ public class Jeu extends Application {
 			root.getChildren().add(c);
 		} //afficher les images
 
-		root.getChildren().addAll(quit,score,menuu);
+		root.getChildren().addAll(quit,score,menuu,retour);
 
 		return root;
 
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception{
-		stage.setTitle("Jeu Memory");
-		stage.setScene(new Scene(createContent()));
-		stage.show();
+	public void start(Stage Pstage) throws Exception{
+		Pstage.setTitle("Jeu Memory");
+		Pstage.setScene(new Scene(createContent1()));
+		Pstage.show();
 
 	}
-	private class Carte extends StackPane{
+
+	public class Carte extends StackPane{
 		private ImageView iw = new ImageView();
 
 		public Carte(Image img) {
@@ -138,7 +221,7 @@ public class Jeu extends Application {
 			getChildren().addAll(bord, iw);
 
 			setOnMouseClicked(event -> { //retourner la carte lors du click
-				if (CarteRetourne() || NbreClicks == 0 )
+				if (CarteRetournee() || NbreClicks == 0 )
 					return;
 				NbreClicks --;
 
@@ -152,6 +235,7 @@ public class Jeu extends Application {
 						if (!MemeCarte(CarteSelectionnee)) {
 							CarteSelectionnee.FaceCachee();
 							this.FaceCachee();
+					
 						}
 						CarteSelectionnee = null; //re initialiser la carte
 						NbreClicks = 2;
@@ -165,12 +249,12 @@ public class Jeu extends Application {
 		}
 
 
-		public boolean CarteRetourne() { //si opacite=1 return true donc la carte est retournee
+		public boolean CarteRetournee() { //si opacite=1 return true donc la carte est retournee
 			return iw.getOpacity()==1;
 		}
 		public void RetournerCarte(Runnable action) {
 			FadeTransition t = new FadeTransition(Duration.seconds(0.2), iw);
-			t.setToValue(1); //Montrer l'image opacite
+			t.setToValue(1); //Montrer l'image opacite=1
 			t.setOnFinished(e -> action.run()); //action executee quand la carte a ete retournee 
 			t.play();
 		}
@@ -185,6 +269,8 @@ public class Jeu extends Application {
 			return iw.getImage().equals(to.iw.getImage()); //comparer les deux cartes
 		}
 	}
+
+
 	public static void main(String[] args) {
 		launch(args);
 	}

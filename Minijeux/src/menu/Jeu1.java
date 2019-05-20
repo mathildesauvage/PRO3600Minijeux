@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+
+import javafx.scene.Node;
+import javafx.stage.Stage;
   
 public class Jeu1 extends JButton implements MouseListener {
   /**
@@ -31,7 +34,7 @@ private String name;
     } catch (IOException e) {
       e.printStackTrace();
     }
-  this.addMouseListener(this); //bouton devient sensivle � la souris
+  this.addMouseListener(this); //bouton devient sensible à la souris
   }
 //modification de l'aspect du bouton
   public void paintComponent(Graphics g){
@@ -46,28 +49,16 @@ private String name;
   
 //Action du bouton  
 
-  //M�thode appel�e lors du clic de souris
-  public void mouseClicked(MouseEvent event) { 
-  }
-
-  //M�thode appel�e lors du survol de la souris
-  public void mouseEntered(MouseEvent event) { 
-	 
-	    }
-	      
-     
-
-  //M�thode appel�e lorsque la souris sort de la zone du bouton
+  //Méthodes obligatoires mais non utilisées ici
+  public void mouseClicked(MouseEvent event) { }
+  public void mouseEntered(MouseEvent event) { }     
   public void mouseExited(MouseEvent event) { }
+  public void mouseReleased(MouseEvent event) {  }   
 
-  //M�thode appel�e lorsque l'on presse le bouton gauche de la souris
+  //Méthode appelée lorsque l'on presse le bouton gauche de la souris
   public void mousePressed(MouseEvent event) {try {
       img = ImageIO.read(new File("resources/abutterflies.png"));
-      String options[] = {"Scores", "Menu", "Nouvelle partie"};
-      runner.Main.main(options);
-
-      //runner.Papillon.main(null);
-  	  
+      runner.Main.main(null);
       
     } catch (IOException e) {
       e.printStackTrace();
@@ -75,6 +66,5 @@ private String name;
     }  
 	}
 
-  //M�thode appel�e lorsque l'on rel�che le clic de souris
-  public void mouseReleased(MouseEvent event) {  }       
+      
 }
