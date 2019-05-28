@@ -65,6 +65,7 @@ private String name;
   public void mousePressed(MouseEvent event) {try {
       img = ImageIO.read(new File("resources/aspectre.png"));
       String options[] = {"Scores", "Menu", "Nouvelle partie"};
+      Menu.fen.dispose();
       memory.Jeu.main(options);
       
     } catch (IOException e) {

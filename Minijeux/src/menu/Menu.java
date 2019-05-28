@@ -4,8 +4,10 @@ import javafx.stage.Stage;
 
 
 public class Menu extends Application {
-  public static void main(String[] args){       
-	  Fenetre fen = new Fenetre();     
+	static Fenetre fen;
+	
+  public static void main(String[] args){     
+	  fen = new Fenetre();    
 	  fen.setVisible(true);
   }
 

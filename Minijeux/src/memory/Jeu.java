@@ -42,7 +42,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import menu.Menu;
 
 
 public class Jeu extends Application {
@@ -138,6 +137,10 @@ public class Jeu extends Application {
 		retour.setOnAction(e -> {
 			s.play();
 			menu.Menu.main(null);
+			Node source = (Node) e.getSource();
+			Stage window = (Stage) source.getScene().getWindow();
+			window.setScene(new Scene(leJeu()));
+			window.close();
 		});
 
 		ToggleGroup group = new ToggleGroup();
@@ -276,6 +279,10 @@ public class Jeu extends Application {
 
 			s.play();
 			menu.Menu.main(null);
+			Node source = (Node) e.getSource();
+			Stage window = (Stage) source.getScene().getWindow();
+			window.setScene(new Scene(leJeu()));
+			window.close();
 		});
 
 		quit.setOnAction(e -> {
@@ -297,14 +304,13 @@ public class Jeu extends Application {
 		});
 
 		score.setOnAction(e -> {
-			if (time.getStatus() == Status.RUNNING) {
-				time.stop();
-			}
 			s.play();
-			Alert dialog = new Alert(AlertType.INFORMATION);
-			dialog.setTitle("Jeu Memory");
-			dialog.setContentText("Vous allez etre redirigé vers les scores");
-			dialog.showAndWait();
+			
+			Node source = (Node) e.getSource();
+			Stage window = (Stage) source.getScene().getWindow();
+			window.setScene(new Scene(leJeu()));
+			window.close();
+			resultat.Main.main(null);
 		});
 
 		//MISE EN PLACE DES IMAGES

@@ -1,9 +1,7 @@
 package memory;
 
 import java.io.File;
-
 import javafx.scene.media.AudioClip;
-
 
 public class Sound {
 
@@ -17,10 +15,12 @@ public class Sound {
 
 	public void play(){
 		sound.play();
+		
 	}
 
 	public void stop(){
 		sound.stop();
+
 	}
 	
 	public void playNonStop() {

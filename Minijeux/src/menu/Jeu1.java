@@ -12,9 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-
-import javafx.scene.Node;
-import javafx.stage.Stage;
   
 public class Jeu1 extends JButton implements MouseListener {
   /**
@@ -58,6 +55,7 @@ private String name;
   //Méthode appelée lorsque l'on presse le bouton gauche de la souris
   public void mousePressed(MouseEvent event) {try {
       img = ImageIO.read(new File("resources/abutterflies.png"));
+      Menu.fen.dispose();
       runner.Main.main(null);
       
     } catch (IOException e) {
@@ -65,6 +63,7 @@ private String name;
       
     }  
 	}
+
 
       
 }
