@@ -24,7 +24,7 @@ public class Fenetre {
 	Fenetre(double largeur, double hauteur, int score, int level, Group g, Scene scene, Stage stage, String name) { //constructeur
 		this.largeur = largeur;
 		this.hauteur = hauteur;
-		this.score = score;
+		Fenetre.score = score;
 		this.level = level;
 		this.group = g;
 		this.scene = scene;
