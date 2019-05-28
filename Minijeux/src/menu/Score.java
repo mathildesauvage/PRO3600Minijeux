@@ -59,6 +59,7 @@ private String name;
   //Méthode appelée lorsque l'on presse le bouton gauche de la souris
   public void mousePressed(MouseEvent event) {try {
       img = ImageIO.read(new File("resources/ascore.png"));
+      Menu.fen.dispose();
       resultat.Main.main(null);
     } catch (IOException e) {
       e.printStackTrace();
