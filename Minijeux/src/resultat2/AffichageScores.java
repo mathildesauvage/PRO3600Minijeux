@@ -1,5 +1,11 @@
 package resultat2;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,6 +16,23 @@ public class AffichageScores extends Parent {
 	
 	public AffichageScores() {
 		int i = 0;
+		String[] tab = new String[5];
+		try{
+			InputStream flux=new FileInputStream("resources/scoreRunner.txt"); 
+			InputStreamReader lecture=new InputStreamReader(flux);
+			BufferedReader buff=new BufferedReader(lecture);
+			String ligne;
+			while ((ligne=buff.readLine())!=null) {
+				tab[i] = ligne;
+				i += 1;
+			}
+			buff.close(); 
+			}		
+			catch (Exception e) {
+				System.out.println(e.toString());
+			}
+		
+		i = 0;
 		while (i < 5) {
 			if (i <3) {
 				Rectangle rect = new Rectangle();
@@ -26,18 +49,13 @@ public class AffichageScores extends Parent {
 			text.setY(61+i*60);
 			this.getChildren().add(text);
 			
-			Text score = new Text("Score "+(i+1));
-			score.setFont(new Font(12));
-			score.setFill(Color.BLACK);
-			score.setX(145);
-			score.setY(61+i*60);
-			this.getChildren().add(score);
-			
+			Text affichage = new Text(tab[i]);
+			affichage.setFont(new Font(12));
+			affichage.setX(145);
+			affichage.setY(61+i*60);
+			this.getChildren().add(affichage);
 	        i += 1;
 		}
-		
-		
-		
 		
 	}
 
