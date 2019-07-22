@@ -51,7 +51,7 @@ public class Bouton {
 				if (type=="quit") {
 					stage.close();
 				} else if (type=="scores") {
-					resultat.Main.main(null);
+					resultat2.Main.main(null);
 					stage.close();
 				}
 			};//fin du handle

@@ -1,4 +1,4 @@
-package menu;
+package ancien_menu;
 
 //import java.awt.Color; 
 import javax.swing.JFrame;

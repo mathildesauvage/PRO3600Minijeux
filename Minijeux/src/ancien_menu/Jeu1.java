@@ -1,4 +1,5 @@
-package menu;
+package ancien_menu;
+
 
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
   
-public class Score extends JButton implements MouseListener {
+public class Jeu1 extends JButton implements MouseListener {
   /**
 	 * 
 	 */
@@ -22,15 +23,15 @@ public class Score extends JButton implements MouseListener {
 private String name;
   private Image img;
 
-  public Score(String str){
+  public Jeu1(String str){
     super(str);
     this.name = str;
     try {
-      img = ImageIO.read(new File("resources/bscore.png"));
+      img = ImageIO.read(new File("resources/bbutterflies.png"));
     } catch (IOException e) {
       e.printStackTrace();
     }
-  this.addMouseListener(this); //bouton devient sensivle � la souris
+  this.addMouseListener(this); //bouton devient sensible à la souris
   }
 //modification de l'aspect du bouton
   public void paintComponent(Graphics g){
@@ -38,34 +39,31 @@ private String name;
     GradientPaint gp = new GradientPaint(0, 0, Color.blue, 0, 20, Color.cyan, true);
     g2d.setPaint(gp);
     g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
-    g2d.setColor(Color.black);
+    g2d.setColor(Color.white);
     g2d.drawString(this.name, this.getWidth() / 2 - (this.getWidth() / 2 /4), (this.getHeight() / 2) + 5);
   }
 //fin
   
 //Action du bouton  
 
-  //Méthode appelée lors du clic de souris
-  public void mouseClicked(MouseEvent event) { 
-  }
-
-  //Méthode appelée lors du survol de la souris
-  public void mouseEntered(MouseEvent event) { 
-     }
-
-  //Méthode appelée lorsque la souris sort de la zone du bouton
+  //Méthodes obligatoires mais non utilisées ici
+  public void mouseClicked(MouseEvent event) { }
+  public void mouseEntered(MouseEvent event) { }     
   public void mouseExited(MouseEvent event) { }
+  public void mouseReleased(MouseEvent event) {  }   
 
   //Méthode appelée lorsque l'on presse le bouton gauche de la souris
   public void mousePressed(MouseEvent event) {try {
-      img = ImageIO.read(new File("resources/ascore.png"));
-      Menu.fen.dispose();
-      resultat.Main.main(null);
+      img = ImageIO.read(new File("resources/abutterflies.png"));
+      Main.fen.dispose();
+      runner.Main.main(null);
+      
     } catch (IOException e) {
       e.printStackTrace();
+      
     }  
 	}
 
-  //Méthode appelée lorsque l'on relâche le clic de souris
-  public void mouseReleased(MouseEvent event) {  }       
+
+      
 }

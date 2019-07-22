@@ -136,7 +136,7 @@ public class Jeu extends Application {
 
 		retour.setOnAction(e -> {
 			s.play();
-			menu.Menu.main(null);
+			menu.Main.main(null);
 			Node source = (Node) e.getSource();
 			Stage window = (Stage) source.getScene().getWindow();
 			window.setScene(new Scene(leJeu()));
@@ -278,7 +278,7 @@ public class Jeu extends Application {
 			}
 
 			s.play();
-			menu.Menu.main(null);
+			menu.Main.main(null);
 			Node source = (Node) e.getSource();
 			Stage window = (Stage) source.getScene().getWindow();
 			window.setScene(new Scene(leJeu()));
@@ -310,7 +310,7 @@ public class Jeu extends Application {
 			Stage window = (Stage) source.getScene().getWindow();
 			window.setScene(new Scene(leJeu()));
 			window.close();
-			resultat.Main.main(null);
+			resultat2.Main.main(null);
 		});
 
 		//MISE EN PLACE DES IMAGES

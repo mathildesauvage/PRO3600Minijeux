@@ -1,9 +1,9 @@
-package menu;
+package ancien_menu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 
-public class Menu extends Application {
+public class Main extends Application {
 	static Fenetre fen;
 	
   public static void main(String[] args){     

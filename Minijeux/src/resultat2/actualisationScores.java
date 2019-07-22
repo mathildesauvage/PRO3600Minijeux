@@ -1,8 +1,6 @@
-package resultat;
+package resultat2;
 import java.io.*;
-
-import javax.swing.JOptionPane;
-public class Actualisation {
+public class actualisationScores {
 
 
 public static void actualisation (){
@@ -17,23 +15,8 @@ public static void actualisation (){
 		}		
 		
 	int b=0;
-	String score;
+	String score = Integer.toString(runner.Fenetre.score);
 	
-	String message = "De quel jeu voulez-vous consulter les scores ?";
-	String options[] = {"Papillon", "Memory", "Retour menu"};
-	int option2 = JOptionPane.showOptionDialog(null, message, null, JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,options,options[2]);
-	if (option2 == 0) {
-		//redirection vers la page de scores de runner
-		score = Integer.toString(runner.Fenetre.score);
-		
-	} else if (option2 == 1) {
-		//redirection vers la page de score de memory
-		score = null;
-	} else {
-		score = null;
-		menu.Menu.main(options);
-	}
-
 	while (score.length()<6) {
 		score= "0"+score;
 	}

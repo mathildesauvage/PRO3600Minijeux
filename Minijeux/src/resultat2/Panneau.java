@@ -1,4 +1,4 @@
-package resultat;
+package resultat2;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.io.*;

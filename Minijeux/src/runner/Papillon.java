@@ -138,11 +138,11 @@ public class Papillon {
 		int option2 = JOptionPane.showOptionDialog(null, message, null, JOptionPane.DEFAULT_OPTION,JOptionPane.PLAIN_MESSAGE,null,options,options[2]);
 		if (option2 == 0) {
 			//redirection vers la page de score
-			resultat.Main.main(null); //on lance la page de score
+			resultat2.Main.main(null); //on lance la page de score
 			stage.close(); //on ferme la fenetre pour pas les accumuler
 		} else if (option2 == 1) {
 			//redirection vers le menu
-			menu.Menu.main(options); //on lance le menu
+			menu.Main.main(options); //on lance le menu
 			stage.close(); //on ferme la fenetre pour pas les accumuler
 		}
 	}
