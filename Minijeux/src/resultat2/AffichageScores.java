@@ -2,7 +2,6 @@ package resultat2;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -14,11 +13,11 @@ import javafx.scene.text.Text;
 
 public class AffichageScores extends Parent {
 	
-	public AffichageScores() {
+	public AffichageScores(String jeu) {
 		int i = 0;
 		String[] tab = new String[5];
 		try{
-			InputStream flux=new FileInputStream("resources/scoreRunner.txt"); 
+			InputStream flux=new FileInputStream("resources/scores/scoreRunner.txt"); 
 			InputStreamReader lecture=new InputStreamReader(flux);
 			BufferedReader buff=new BufferedReader(lecture);
 			String ligne;
@@ -34,14 +33,21 @@ public class AffichageScores extends Parent {
 		
 		i = 0;
 		while (i < 5) {
-			if (i <3) {
-				Rectangle rect = new Rectangle();
-				rect.setWidth(200);
-		        rect.setHeight(60);
-		        rect.setLayoutY(30+i*120);
-		        rect.setFill(Color.LIGHTBLUE);
-		        this.getChildren().add(rect);
-			} 
+			Rectangle rect = new Rectangle();
+			rect.setWidth(200);
+	        rect.setHeight(60);
+	        rect.setLayoutY(28+i*60);
+			if (i%2 == 0) { //0, 2, 4
+		        if (jeu == "runner") {
+		        	rect.setFill(Color.LIGHTPINK);
+		        } else {
+		        	rect.setFill(Color.LIGHTBLUE);
+		        }
+			} else { //1, 3
+		        rect.setFill(Color.LIGHTGREY);
+			}
+			this.getChildren().add(rect);
+			
 			Text text = new Text("Player "+(i+1));
 	        text.setFont(new Font(12));
 			text.setFill(Color.BLACK);

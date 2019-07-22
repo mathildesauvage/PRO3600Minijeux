@@ -45,20 +45,14 @@ public class Bouton {
 	public static void boutonScores(Stage stage, MenuItem itemMemory, MenuItem itemRunner) {
 		itemMemory.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				
+				AffichageScores aff = new AffichageScores("memory");
+		        menu.Main.root.getChildren().add(aff);
 			}
 		});
 		itemRunner.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				actualisationScores.actualisation();
-				/*JFrame fenetre = new JFrame();
-			    fenetre.setVisible(true);
-			    fenetre.setTitle("Tableau score runner");
-			    fenetre.setSize(400, 150);
-			    fenetre.setLocationRelativeTo(null);
-			    fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			    fenetre.setContentPane(new Panneau());
-			    fenetre.setVisible(true);*/
+				AffichageScores aff = new AffichageScores("runner");
+		        menu.Main.root.getChildren().add(aff);
 			}
 		});
 	}

@@ -56,8 +56,8 @@ public class Jeu extends Application {
 	private Carte CarteSelectionnee = null;
 	private int NbreClicks = 2;
 	ToggleGroup group = new ToggleGroup();
-	Sound s = new Sound("resources/toggle.mp3");
-	Sound intro = new Sound("resources/Queen.mp3");
+	Sound s = new Sound("/resources/memory/toggle.mp3");
+	Sound intro = new Sound("/resources/memory/Queen.mp3");
 
 	//CHRONO
 
@@ -94,8 +94,8 @@ public class Jeu extends Application {
 		Text text2 = new Text(250,240,"Choisissez le nombre de cartes : ");
 		text2.setFont(Font.font("Helvetica", FontWeight.NORMAL, 20));
 
-		Image on = new Image("on.png",50,50,false,false);
-		Image off = new Image("off.png",50,50,false,false);
+		Image on = new Image("/resources/memory/on.png",50,50,false,false);
+		Image off = new Image("/resources/memory/off.png",50,50,false,false);
 		ImageView iwOn = new ImageView(on);
 		ImageView iwOff = new ImageView(off);
 		iwOn.setVisible(false);
@@ -315,18 +315,18 @@ public class Jeu extends Application {
 
 		//MISE EN PLACE DES IMAGES
 
-		Image im1 = new Image("chaton.jpg",100,100,false,false);
-		Image im2 = new Image("chiot.jpg",100,100,false,false);
-		Image im3 = new Image("lapin.jpg",100,100,false,false);
-		Image im4 = new Image("chevre.jpg",100,100,false,false);
-		Image im5 = new Image("phoque.jpg",100,100,false,false);
-		Image im6 = new Image("giraffe.jpeg",100,100,false,false);
-		Image im7 = new Image("singe.jpeg",100,100,false,false);
-		Image im8 = new Image("renard.jpeg",100,100,false,false);
-		Image im9 = new Image("tigre.jpeg",100,100,false,false);
-		Image im10 = new Image("elephant.jpeg",100,100,false,false);
-		Image im11 = new Image("ecureuil.jpeg",100,100,false,false);
-		Image im12 = new Image("lion.jpg",100,100,false,false);
+		Image im1 = new Image("/resources/memory/chaton.jpg",100,100,false,false);
+		Image im2 = new Image("/resources/memory/chiot.jpg",100,100,false,false);
+		Image im3 = new Image("/resources/memory/lapin.jpg",100,100,false,false);
+		Image im4 = new Image("/resources/memory/chevre.jpg",100,100,false,false);
+		Image im5 = new Image("/resources/memory/phoque.jpg",100,100,false,false);
+		Image im6 = new Image("/resources/memory/giraffe.jpeg",100,100,false,false);
+		Image im7 = new Image("/resources/memory/singe.jpeg",100,100,false,false);
+		Image im8 = new Image("/resources/memory/renard.jpeg",100,100,false,false);
+		Image im9 = new Image("/resources/memory/tigre.jpeg",100,100,false,false);
+		Image im10 = new Image("/resources/memory/elephant.jpeg",100,100,false,false);
+		Image im11 = new Image("/resources/memory/ecureuil.jpeg",100,100,false,false);
+		Image im12 = new Image("/resources/memory/lion.jpg",100,100,false,false);
 
 		Image images[] = {im1,im2,im3,im4,im5,im6,im7,im8,im9,im10,im11,im12};
 
@@ -373,7 +373,7 @@ public class Jeu extends Application {
 			getChildren().addAll(bord, iw);
 
 			setOnMouseClicked(event -> { //retourner la carte lors du click
-				Sound s = new Sound("resources/Card-flip-sound-effect.mp3");
+				Sound s = new Sound("/resources/memory/Card-flip-sound-effect.mp3");
 				s.play();
 				if (carteRetournee() || NbreClicks == 0 )
 					return;

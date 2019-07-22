@@ -2,6 +2,8 @@ package menu;
 
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -12,13 +14,19 @@ public class Bouton extends Parent {
 	
 	public Bouton(String jeu, Color color, int posX, int posY) {
 		//fond et image
-		Rectangle fond = new Rectangle();
+		Image fond = new Image("menu/papi.jpg", 300, 200, false, false);
+        ImageView image = new ImageView(fond);
+        
+		
+		/*Rectangle fond = new Rectangle();
 		fond.setWidth(300);
-		fond.setHeight(200);
-        fond.setLayoutX(posX);
+        fond.setHeight(200);
+        fond.setArcWidth(10);
+        fond.setArcHeight(10);
+        fond.setLayoutX(0);
         fond.setLayoutY(posY);
-        fond.setFill(color);
-
+        fond.setFill(Color.GREEN);*/
+        
         //fond du bouton
 		Rectangle fond_bouton = new Rectangle();
         fond_bouton.setWidth(80);
@@ -48,7 +56,7 @@ public class Bouton extends Parent {
         });
 		
 		//ajout des trois elements au groupe
-		this.getChildren().add(fond);
+		this.getChildren().setAll(image);
 		this.getChildren().add(fond_bouton);
 		this.getChildren().add(nom_jeu);
 	}
