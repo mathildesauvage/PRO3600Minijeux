@@ -1,10 +1,5 @@
 package resultat2;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import javafx.scene.Parent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,20 +11,21 @@ public class AffichageScores extends Parent {
 	public AffichageScores(String jeu) {
 		int i = 0;
 		String[] tab = new String[5];
-		try{
-			InputStream flux=new FileInputStream("resources/scores/scoreRunner.txt"); 
-			InputStreamReader lecture=new InputStreamReader(flux);
-			BufferedReader buff=new BufferedReader(lecture);
-			String ligne;
-			while ((ligne=buff.readLine())!=null) {
-				tab[i] = ligne;
-				i += 1;
-			}
-			buff.close(); 
-			}		
-			catch (Exception e) {
-				System.out.println(e.toString());
-			}
+		Color color;
+		
+		if (jeu == "memory") {
+        	color = Color.LIGHTPINK;
+        	for (String elt : memory.ActualisationScores.tabMemory) {
+        		tab[i] = elt;
+        		i += 1 ;
+        	}
+        } else {
+        	color = Color.LIGHTBLUE;
+        	for (String elt : runner.ActualisationScores.tabRunner) {
+        		tab[i] = elt;
+        		i += 1 ;
+        	}
+        }
 		
 		i = 0;
 		while (i < 5) {
@@ -38,11 +34,7 @@ public class AffichageScores extends Parent {
 	        rect.setHeight(60);
 	        rect.setLayoutY(28+i*60);
 			if (i%2 == 0) { //0, 2, 4
-		        if (jeu == "runner") {
-		        	rect.setFill(Color.LIGHTPINK);
-		        } else {
-		        	rect.setFill(Color.LIGHTBLUE);
-		        }
+		        rect.setFill(color);
 			} else { //1, 3
 		        rect.setFill(Color.LIGHTGREY);
 			}

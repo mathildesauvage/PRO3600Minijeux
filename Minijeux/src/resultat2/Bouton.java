@@ -27,7 +27,7 @@ public class Bouton {
 		itemMemory.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				stage.close();
-				memory.Jeu.main(null);
+				memory.Main.main(null);
 			}
 		});
 		itemRunner.setOnAction(new EventHandler<ActionEvent>() {

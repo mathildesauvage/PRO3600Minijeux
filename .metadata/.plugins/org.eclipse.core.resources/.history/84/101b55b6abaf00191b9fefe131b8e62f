@@ -1,0 +1,6 @@
+package memory;
+
+public class ActualisationScores {
+	public static int[] tabMemory = new int[5];
+
+}

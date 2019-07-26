@@ -1,0 +1,13 @@
+package runner;
+
+public class ActualisationScores {
+	public static String[] tabMemory = {
+		"00001",
+		"00002",
+		"00003",
+		"00004",
+		"00005",
+	};
+	
+
+}

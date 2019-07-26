@@ -2,8 +2,8 @@ package menu;
 
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.Image;
+//import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -14,18 +14,18 @@ public class Bouton extends Parent {
 	
 	public Bouton(String jeu, Color color, int posX, int posY) {
 		//fond et image
-		Image fond = new Image("menu/papi.jpg", 300, 200, false, false);
-        ImageView image = new ImageView(fond);
+		/*Image fond = new Image("menu/papi.jpg", 300, 200, false, false);
+        ImageView image = new ImageView(fond);*/
         
 		
-		/*Rectangle fond = new Rectangle();
+		Rectangle fond = new Rectangle();
 		fond.setWidth(300);
         fond.setHeight(200);
         fond.setArcWidth(10);
         fond.setArcHeight(10);
         fond.setLayoutX(0);
         fond.setLayoutY(posY);
-        fond.setFill(Color.GREEN);*/
+        fond.setFill(color);
         
         //fond du bouton
 		Rectangle fond_bouton = new Rectangle();
@@ -41,8 +41,14 @@ public class Bouton extends Parent {
 		Text nom_jeu = new Text(jeu);
 		nom_jeu.setFont(new Font(12));
 		nom_jeu.setFill(Color.BLACK);
-		nom_jeu.setX(110);
-		nom_jeu.setY(posY+92);
+		if (jeu == "Memory") {
+			nom_jeu.setX(127);
+        } else if (jeu == "Runner") {
+        	nom_jeu.setX(130);
+        } else {
+        	nom_jeu.setX(130);
+        }
+		nom_jeu.setY(posY+100);
 		
 		fond_bouton.setOnMousePressed(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent me){
@@ -56,7 +62,7 @@ public class Bouton extends Parent {
         });
 		
 		//ajout des trois elements au groupe
-		this.getChildren().setAll(image);
+		this.getChildren().setAll(fond);
 		this.getChildren().add(fond_bouton);
 		this.getChildren().add(nom_jeu);
 	}
@@ -76,7 +82,7 @@ public class Bouton extends Parent {
         } else if (jeu == "Runner") {
         	
         } else {
-        	resultat2.Main.main(null);
+        	//resultat2.Main.main(null);
         }
     }
 }
