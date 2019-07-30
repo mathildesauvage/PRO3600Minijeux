@@ -19,4 +19,7 @@
 <fullyQualifiedTypeName name="javafx.scene.Parent"/>
 <fullyQualifiedTypeName name="memory.Main"/>
 <fullyQualifiedTypeName name="javafx.util.Duration"/>
+<fullyQualifiedTypeName name="javafx.stage.Stage"/>
+<fullyQualifiedTypeName name="allInOne.Main"/>
+<fullyQualifiedTypeName name="javafx.scene.canvas.GraphicsContext"/>
 </qualifiedTypeNameHistroy>

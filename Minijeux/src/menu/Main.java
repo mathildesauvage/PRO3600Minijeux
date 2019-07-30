@@ -30,9 +30,9 @@ public class Main extends Application {
 	    
 	    
 	    
-        Bouton memory = new Bouton("Memory", Color.PURPLE, 0, 0);
-        Bouton runner = new Bouton("Runner", Color.CORNFLOWERBLUE, 0, 200);
-        Bouton scores = new Bouton("Scores", Color.ORANGE, 0, 400);
+        Bouton memory = new Bouton("Memory", Color.PURPLE, 0, 0, stage);
+        Bouton runner = new Bouton("Runner", Color.CORNFLOWERBLUE, 0, 200, stage);
+        Bouton scores = new Bouton("Scores", Color.ORANGE, 0, 400, stage);
         
         root.getChildren().add(memory);
         root.getChildren().add(runner);
