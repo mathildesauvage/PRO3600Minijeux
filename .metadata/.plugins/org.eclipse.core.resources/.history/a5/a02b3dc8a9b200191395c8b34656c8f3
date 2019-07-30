@@ -1,0 +1,33 @@
+package allInOne;
+
+import java.io.File;
+import javafx.scene.media.AudioClip;
+
+public class Sound {
+
+	String file;
+	AudioClip audio_sound;
+
+	public Sound(String file) {
+		this.file = file;
+		this.sound = new Media(new File(file).toURI().toString());
+		this.player = new MediaPlayer(sound);
+		this.audio_sound = new AudioClip(new File(file).toURI().toString());
+	}
+
+	public void play(){
+		player.play();
+		audio_sound.play();
+	}
+
+	public void stop(){
+		player.stop();
+		audio_sound.stop();
+	}
+	
+	public void playNonStop() {
+		audio_sound.setCycleCount(AudioClip.INDEFINITE);
+		audio_sound.play();
+	}
+
+}

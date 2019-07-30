@@ -1,0 +1,32 @@
+package allInOne;
+
+public class Sound {
+
+	String file;
+	Media sound;
+	MediaPlayer player;
+	AudioClip sound;
+
+	public Sound(String file) {
+		this.file = file;
+		this.sound = new Media(new File(file).toURI().toString());
+		this.player = new MediaPlayer(sound);
+		this.sound = new AudioClip(new File(file).toURI().toString());
+	}
+
+	public void play(){
+		player.play();
+		sound.play();
+	}
+
+	public void stop(){
+		player.stop();
+		sound.stop();
+	}
+	
+	public void playNonStop() {
+		sound.setCycleCount(AudioClip.INDEFINITE);
+		sound.play();
+	}
+
+}

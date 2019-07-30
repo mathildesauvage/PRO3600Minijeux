@@ -22,4 +22,7 @@
 <fullyQualifiedTypeName name="javafx.stage.Stage"/>
 <fullyQualifiedTypeName name="allInOne.Main"/>
 <fullyQualifiedTypeName name="javafx.scene.canvas.GraphicsContext"/>
+<fullyQualifiedTypeName name="javafx.application.Application"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Label"/>
+<fullyQualifiedTypeName name="javafx.scene.control.ToggleGroup"/>
 </qualifiedTypeNameHistroy>

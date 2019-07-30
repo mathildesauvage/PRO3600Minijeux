@@ -33,8 +33,9 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage stage) {
-		Main.stage = stage;
-        Main.stage.setTitle("Menu");
+		Main.stage = stage;*/
+		stage = new Stage();
+        //stage.setTitle("Menu");
         root = new Group();
         scene = new Scene(root, 300, 600, Color.WHITE);
         canevas = new Canvas(640, 540);
@@ -49,9 +50,9 @@ public class Main extends Application {
         root.getChildren().add(runner);
         root.getChildren().add(scores);
         
-        Main.stage.setResizable(false);
-        Main.stage.setScene(scene);
-        Main.stage.show();
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }	
 

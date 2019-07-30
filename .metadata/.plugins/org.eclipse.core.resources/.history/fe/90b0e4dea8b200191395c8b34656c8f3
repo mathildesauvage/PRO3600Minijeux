@@ -33,7 +33,7 @@ public class Main extends Application {
 	}
 	
 	public void start(Stage stage) {
-		Main.stage = stage;
+		stage = Main.stage;
         Main.stage.setTitle("Menu");
         root = new Group();
         scene = new Scene(root, 300, 600, Color.WHITE);

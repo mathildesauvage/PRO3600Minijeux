@@ -77,8 +77,9 @@ class ResultatBouton {
 	public static void boutonMenu(Stage stage, MenuItem item) {
 		item.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				stage.close();
+				
 			    Main.main(null);
+			    stage.close();
 			}
 		});
 	}

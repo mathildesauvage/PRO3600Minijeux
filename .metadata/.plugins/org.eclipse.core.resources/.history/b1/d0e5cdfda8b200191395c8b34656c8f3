@@ -78,7 +78,7 @@ class ResultatBouton {
 		item.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				stage.close();
-			    Main.main(null);
+			    //Main.main(null);
 			}
 		});
 	}

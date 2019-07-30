@@ -1,0 +1,383 @@
+package allInOne;
+
+import java.util.Optional;
+
+
+import javafx.animation.Animation.Status;
+import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
+
+public class Memory {
+
+	Label GameOver;
+	Label label;
+	int score;
+	Label lb;
+	private int NbreParLigne;
+	private int NbreDePairs;
+	private int NbCartesRetournées;
+	private Carte CarteSelectionnee = null;
+	private int NbreClicks = 2;
+	ToggleGroup group = new ToggleGroup();
+	Sound s = new Sound("resources/toggle.mp3");
+	Sound intro = new Sound("resources/Queen.mp3");
+
+	//CHRONO
+
+	private final Integer starttime = 0;
+	private Integer seconds = starttime;
+	KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>(){
+
+		@Override
+		public void handle(ActionEvent event) {
+			seconds++;
+			lb.setText("Temps : " + seconds.toString());
+			if (seconds > 99) {
+				time.stop();
+				GameOver.setVisible(true);
+			}
+		}
+	});
+	Timeline time = new Timeline(frame);
+
+	private Parent Accueil() {
+		Pane root = new Pane();
+		root.setPrefSize(800, 600);	
+		
+		time.setCycleCount(Timeline.INDEFINITE);
+
+		LinearGradient lg = new LinearGradient(0,0,0,1,true,CycleMethod.NO_CYCLE,new Stop(0.3f,Color.LAVENDER),new Stop(0.75f,Color.PLUM));
+		root.setBackground(new Background(new BackgroundFill(lg, CornerRadii.EMPTY, Insets.EMPTY)));
+@ -63,6 +95,24 @@ public class Jeu extends Application {
+		Text text2 = new Text(250,240,"Choisissez le nombre de cartes : ");
+		text2.setFont(Font.font("Helvetica", FontWeight.NORMAL, 20));
+
+		Image on = new Image("on.png",50,50,false,false);
+		Image off = new Image("off.png",50,50,false,false);
+		ImageView iwOn = new ImageView(on);
+		ImageView iwOff = new ImageView(off);
+		iwOn.setVisible(false);
+
+		iwOn.setOnMouseClicked(e -> {
+			iwOn.setVisible(false);
+			iwOff.setVisible(true);
+			intro.stop();
+		});
+
+		iwOff.setOnMouseClicked(e -> {
+			iwOff.setVisible(false);
+			iwOn.setVisible(true);
+			intro.playNonStop();
+		});
+
+		Button start = new Button("Commencer");
+		Button retour = new Button("Retour");
+
+@ -75,10 +125,14 @@ public class Jeu extends Application {
+		retour.setPrefSize(100, 50);
+
+		start.setOnAction(e -> { 
+			if (time.getStatus() == Status.STOPPED || time.getStatus() == Status.PAUSED  ) {
+				time.playFromStart();
+			}
+			seconds = 0;
+			s.play();
+			Node source = (Node) e.getSource();
+			Stage window = (Stage) source.getScene().getWindow();
+			window.setScene(new Scene(createContent2()));
+			window.setScene(new Scene(leJeu()));
+		});
+
+		retour.setOnAction(e -> {
+@ -88,38 +142,42 @@ public class Jeu extends Application {
+
+		ToggleGroup group = new ToggleGroup();
+
+		RadioButton button1 = new RadioButton("4");
+		RadioButton button1 = new RadioButton("8");
+		button1.setToggleGroup(group);
+		button1.setOnAction( e -> {
+			NbreDePairs = 4;
+			NbreParLigne = 4;
+			s.play();
+		});
+
+		RadioButton button2 = new RadioButton("12");
+		RadioButton button2 = new RadioButton("10");
+		button2.setToggleGroup(group);
+		button2.setOnAction( e -> {
+			NbreParLigne = 12;
+			NbreDePairs = 5;
+			NbreParLigne = 5;
+			s.play();
+		});
+
+		RadioButton button3 = new RadioButton("24");
+		RadioButton button3 = new RadioButton("14");
+		button3.setToggleGroup(group);
+		button3.setOnAction( e -> {
+			NbreParLigne = 24;
+			NbreDePairs = 7;
+			NbreParLigne = 7;
+			s.play();
+		});
+
+		RadioButton button4 = new RadioButton("30");
+		RadioButton button4 = new RadioButton("24");
+		button4.setToggleGroup(group);
+		button4.setOnAction( e -> {
+			NbreParLigne = 30;
+			NbreDePairs = 12;
+			NbreParLigne = 8;
+			s.play();
+		});
+
+		VBox menuButtons = new VBox(5);
+		menuButtons.getChildren().addAll(button1,button2,button3,button4);
+
+		root.getChildren().addAll(text,menuButtons,text2,start,retour);
+		root.getChildren().addAll(text,menuButtons,text2,start,retour,iwOn,iwOff);
+
+		menuButtons.setLayoutX(350);
+		menuButtons.setLayoutY(260);
+
+	public class Jeu extends Application {
+		return root;
+	}
+
+	private Parent leJeu() {
+		Pane root = new Pane();
+		root.setPrefSize(800, 600);	
+
+		Text text = new Text(390,490,"Score : " + p);
+		text.setFont(Font.font("Helvetica", FontWeight.BOLD, 20));
+		text.setFill(Color.BLACK);
+		GameOver = new Label("Game over !");
+		GameOver.setVisible(false);
+		GameOver.setLayoutX(300);
+		GameOver.setLayoutY(400);
+		GameOver.setFont(Font.font(40));
+		GameOver.setTextFill(Color.RED);
+		
+		label = new Label("Vous avez gagné !");
+		label.setVisible(false);
+		label.setLayoutX(300);
+		label.setLayoutY(400);
+		label.setFont(Font.font(30));
+		label.setTextFill(Color.DARKBLUE);
+		
+		//CHRONO
+
+		lb= new Label("Temps : " + seconds.toString());
+		lb.setLayoutX(350);
+		lb.setLayoutY(450);
+		lb.setFont(Font.font(30));
+
+		//BOUTONS
+
+		Button rejouer = new Button("Rejouer");
+		Button menuu = new Button("Menu");
+		Button quit = new Button("Quitter");
+		Button score = new Button("Score");
+		Button retour = new Button("Retour");
+
+		retour.setLayoutX(150);
+		rejouer.setLayoutX(50);
+		rejouer.setLayoutY(500);
+		retour.setLayoutX(200);
+		retour.setLayoutY(500);
+		menuu.setLayoutX(300);
+		menuu.setLayoutX(350);
+		menuu.setLayoutY(500);
+		quit.setLayoutX(450);
+		quit.setLayoutX(500);
+		quit.setLayoutY(500);
+		score.setLayoutX(600);
+		score.setLayoutX(650);
+		score.setLayoutY(500);
+
+		rejouer.setPrefSize(100, 50);
+		menuu.setPrefSize(100, 50);
+		quit.setPrefSize(100, 50);
+		score.setPrefSize(100, 50);
+		retour.setPrefSize(100, 50);
+
+
+		rejouer.setOnAction(e -> {
+			if (time.getStatus() == Status.RUNNING) {
+				time.stop();
+			}
+			s.play();
+			Alert dialogC = new Alert(AlertType.CONFIRMATION);
+			dialogC.setTitle("Jeu Memory");
+			dialogC.setHeaderText(null);
+			dialogC.setContentText("Voulez-vous rejouer ?");
+			Optional<ButtonType> answer = dialogC.showAndWait();
+			if (answer.get() == ButtonType.OK) {
+				Node source = (Node) e.getSource();
+				Stage window = (Stage) source.getScene().getWindow();
+				window.setScene(new Scene(leJeu()));
+				seconds = 0;
+				time.playFromStart();
+
+			}
+			else {
+				time.play();
+			}
+		});
+
+		retour.setOnAction(e -> {
+			if (time.getStatus() == Status.RUNNING) {
+				time.stop();
+			}
+			s.play();
+			Node source = (Node) e.getSource();
+			Stage window = (Stage) source.getScene().getWindow();
+			window.setScene(new Scene(createContent1()));
+			window.setScene(new Scene(Accueil()));
+		});
+
+		menuu.setOnAction(e -> {
+			if (time.getStatus() == Status.RUNNING) {
+				time.stop();
+			}
+
+			s.play();
+			menu.Menu.main(null);
+		});
+
+		quit.setOnAction(e -> {
+			if (time.getStatus() == Status.RUNNING) {
+				time.stop();
+			}
+
+			s.play();
+			Alert dialogC = new Alert(AlertType.CONFIRMATION);
+			dialogC.setTitle("Jeu Memory");
+@ -178,7 +295,11 @@ public class Jeu extends Application {
+				window.close(); //quitter le jeu
+			}
+		});
+
+		score.setOnAction(e -> {
+			if (time.getStatus() == Status.RUNNING) {
+				time.stop();
+			}
+			s.play();
+			Alert dialog = new Alert(AlertType.INFORMATION);
+			dialog.setTitle("Jeu Memory");
+@ -186,6 +307,8 @@ public class Jeu extends Application {
+			dialog.showAndWait();
+		});
+
+		//MISE EN PLACE DES IMAGES
+
+		Image im1 = new Image("chaton.jpg",100,100,false,false);
+		Image im2 = new Image("chiot.jpg",100,100,false,false);
+		Image im3 = new Image("lapin.jpg",100,100,false,false);
+@ -202,17 +325,11 @@ public class Jeu extends Application {
+		Image images[] = {im1,im2,im3,im4,im5,im6,im7,im8,im9,im10,im11,im12};
+
+		ArrayList<Carte> cartes = new ArrayList<>();
+		for (int i=0; i<NbreParLigne; i++) {
+			if (NbreParLigne == 4) {
+				cartes.add(new Carte(images[i]));
+				cartes.add(new Carte(images[i]));
+			}
+			else {
+				cartes.add(new Carte(images[i]));
+				cartes.add(new Carte(images[i]));
+				cartes.add(new Carte(images[i]));
+			}
+		for (int i=0; i<NbreDePairs; i++) {
+			cartes.add(new Carte(images[i]));
+			cartes.add(new Carte(images[i]));
+		}
+
+		Collections.shuffle(cartes); //melanger les images
+
+		for (int i = 0; i < cartes.size(); i++) {
+@ -222,8 +339,7 @@ public class Jeu extends Application {
+			root.getChildren().add(c);
+		} //afficher les images
+
+		root.getChildren().addAll(quit,score,menuu,retour,text);
+
+		root.getChildren().addAll(quit,score,menuu,retour,rejouer,lb,label,GameOver);
+		return root;
+
+	}
+@ -231,9 +347,9 @@ public class Jeu extends Application {
+	@Override
+	public void start(Stage Pstage) throws Exception{
+		Pstage.setTitle("Jeu Memory");
+		Pstage.setScene(new Scene(createContent1()));
+		intro.play();
+		Pstage.setScene(new Scene(Accueil()));
+		Pstage.show();
+
+	}
+
+	public class Carte extends StackPane{
+@ -268,17 +384,26 @@ public class Jeu extends Application {
+						if (!memeCarte(CarteSelectionnee)) {
+							CarteSelectionnee.faceCachee();
+							this.faceCachee();
+							pointsNegatifs();
+						}
+						else {
+							NbCartesRetournées ++;
+						}
+						CarteSelectionnee = null; //re initialiser la carte
+						NbreClicks = 2;
+						if (NbCartesRetournées == NbreDePairs ) {
+							NbCartesRetournées = 0;
+							time.stop();
+							score = seconds;
+							label.setVisible(true);
+						}
+					});
+				}
+				System.out.println("p" + p);
+
+			});
+			faceCachee();
+
+		}
+		
+
+
+
+		public boolean carteRetournee() { //si opacite=1 return true donc la carte est retournee
+@ -301,15 +426,10 @@ public class Jeu extends Application {
+			return iw.getImage().equals(to.iw.getImage()); //comparer les deux cartes
+		}
+
+		public int pointsNegatifs() {
+			return p--;
+		}
+
+		
+	}
+
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+}

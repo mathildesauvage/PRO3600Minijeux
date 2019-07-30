@@ -24,4 +24,11 @@
 			<item value="org.eclipse.egit.ui.internal.clone.gitclonecategory"/>
 		</list>
 	</section>
+	<section name="ShowViewDialog">
+		<item value="307" key="DIALOG_WIDTH"/>
+		<item value="1|.Helvetica Neue DeskInterface|11.0|0|COCOA|1|.HelveticaNeueDeskInterface-Regular" key="DIALOG_FONT_NAME"/>
+		<item value="415" key="DIALOG_HEIGHT"/>
+		<item value="517" key="DIALOG_X_ORIGIN"/>
+		<item value="129" key="DIALOG_Y_ORIGIN"/>
+	</section>
 </section>
